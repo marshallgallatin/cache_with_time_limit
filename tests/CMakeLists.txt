@@ -1,3 +1,4 @@
+# From https://stackoverflow.com/questions/63925255/googletest-compile-with-mt-staticrelease-errors
 set(gtest_force_shared_crt on)
 
 include(FetchContent)
