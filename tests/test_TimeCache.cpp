@@ -2,6 +2,8 @@
 #include <TimeCache.h>
 #include <gtest/gtest.h>
 
+#include <chrono>
+#include <thread>
 #include <sstream>
 #include <vector>
 #include <string>
@@ -48,7 +50,7 @@ class TimeCacheFixture : public ::testing::TestWithParam<TimeCacheParams>
 
         void performAction(Actions action, std::vector<int> values, uint32_t timeDelay, std::string output)
         {
-            // TODO timeDelay goes here
+            std::this_thread::sleep_for(std::chrono::milliseconds(timeDelay));
 
             switch(action)
             {
@@ -91,14 +93,14 @@ TimeCacheParams testParams[] =
 {   // actions, values, timeDelays, output
     {
         {Actions::TIME_LIMITED_CACHE, Actions::SET, Actions::GET, Actions::COUNT, Actions::GET},                
-        {{}, {1, 42, 100}, {1}, {}, {1}},                   
-        {0, 0, 50, 50, 150},            
+        {{}, {1, 42, 110}, {1}, {}, {1}},                   
+        {0, 0, 50, 0, 100},            
         {"null", "false", "42", "1", "-1"}
     },
     {
         {Actions::TIME_LIMITED_CACHE, Actions::SET, Actions::SET, Actions::GET, Actions::GET, Actions::GET, Actions::COUNT},  
         {{}, {1, 42, 50}, {1, 50, 100}, {1}, {1}, {1}, {}}, 
-        {0, 0, 40, 50, 120, 200, 250},  
+        {0, 0, 40, 10, 70, 80, 50},  
         {"null", "false", "true", "50", "50", "-1", "0"}
     }
 };
