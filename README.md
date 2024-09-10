@@ -23,5 +23,5 @@ cmake --build .
 ## Running the Test Suite
 Once the project is compiled, you can run the test suite using:
 ```
-./tests/Debug/unit_tests
+./tests/Debug/unit_tests.exe
 ```

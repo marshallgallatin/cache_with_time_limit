@@ -110,11 +110,6 @@ TimeCacheParams testParams[] =
     }
 };
 
-TEST_P(TimeCacheFixture, does_nothing)
-{
-    EXPECT_EQ(1, 1);
-}
-
 TEST_P(TimeCacheFixture, run_test_case)
 {
     const TimeCacheParams& testParams = GetParam();
@@ -124,7 +119,6 @@ TEST_P(TimeCacheFixture, run_test_case)
     }
     EXPECT_EQ(1, 1);
 }
-
 
 INSTANTIATE_TEST_SUITE_P
 (
