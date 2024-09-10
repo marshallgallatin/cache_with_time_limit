@@ -25,12 +25,10 @@ bool TimeCache::set(int key, int value, int durationInMilliseconds)
     else
     {
         const bool expired = isExpired(cachedItem->second);
-        // item in map, lets see if its expired
         cachedItem->second.value = value;
         cachedItem->second.expirationTime = std::chrono::system_clock::now() + std::chrono::milliseconds(durationInMilliseconds);
         return !expired;
     }
-    return false;
 }
 
 int TimeCache::get(int key)

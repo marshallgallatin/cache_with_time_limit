@@ -89,6 +89,11 @@ class TimeCacheFixture : public ::testing::TestWithParam<TimeCacheParams>
         std::unique_ptr<TimeCache> theTimeCache;
 };
 
+// NOTE: the original time delays from the examples given here, were time deltas from the beginning of the execution:
+// https://leetcode.com/problems/cache-with-time-limit/description/
+// Given the way I've implemented my code, I've change those time delays to be relative to the previous time.
+// for example, in the original it was [0, 0, 50, 50...] where there are two steps that happen at t=50, but since I'm doing the 
+// realtive wait between steps, mine became [0, 0, 50, 0...] because there should be a zero wait after the first 50ms wait
 TimeCacheParams testParams[] = 
 {   // actions, values, timeDelays, output
     {
